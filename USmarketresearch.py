@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 API_KEY = '5882fd0192534757cc3c97f987f2028d766b8c59'
 url = ("https://api.census.gov/data/2022/acs/acs1" 
+       
        "?get=NAME,B19013_001E" # B19013_001E is the median household income
        "&for=state:*" # for all states
        f"&key={API_KEY}")
@@ -32,4 +33,4 @@ plt.xlabel('State')
 plt.ylabel('Median Household Income')
 plt.title('Top 10  US States by Median Household Income (ACS 2022)')
 plt.gca().invert_yaxis()
-plt.show()
+plt.show()   
