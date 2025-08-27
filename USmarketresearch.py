@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 """Fetching the US Census Bureau API data."""
 
@@ -20,17 +21,18 @@ df['B19013_001E'] = pd.to_numeric(df['B19013_001E'], errors='coerce')
 df = df.dropna(subset=['B19013_001E'])
 
 """Sorting the DataFrame by median household income and displaying the top 10 states."""
-
 df_sorted = df.sort_values(by='B19013_001E', ascending=False)
 top10 = df_sorted.head(10)
-print(top10[['NAME', 'B19013_001E']].head(10))
+print(top10[['NAME', 'B19013_001E']])
 
 """Visualizing the data using a bar chart with matplotlib."""
 
 plt.figure(figsize=(12, 6))
 plt.barh(top10['NAME'], top10['B19013_001E'], color='skyblue')
-plt.xlabel('State')
-plt.ylabel('Median Household Income')
-plt.title('Top 10  US States by Median Household Income (ACS 2022)')
+plt.xlabel('Median Household Income ($)')
+plt.ylabel('State')
+plt.title('Top 10 US States by Median Household Income (ACS 2022)')
 plt.gca().invert_yaxis()
+plt.tight_layout()
+plt.savefig('output_chart.png', dpi=300, bbox_inches='tight')
 plt.show()   
